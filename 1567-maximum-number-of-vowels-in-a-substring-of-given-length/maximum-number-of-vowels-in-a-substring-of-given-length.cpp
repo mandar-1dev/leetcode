@@ -5,24 +5,26 @@ public:
     }
 
     int maxVowels(string s, int k) {
-        int cnt = 0;
+        int count = 0;
 
         for(int i = 0; i < k; i++)
             if(isVowel(s[i]))
-                cnt++;
+                count++;
 
-        int ans = cnt;
+        int ans = count;
 
         for(int i = k; i < s.size(); i++) {
             if(isVowel(s[i]))
-                cnt++;
+                count++;
 
             if(isVowel(s[i-k]))
-                cnt--;
+                count--;
 
-            ans = max(ans, cnt);
+            ans = max(ans, count);
         }
 
         return ans;
     }
 };
+
+//current_vowels = current_vowels + vowel_entering_window -vowel_leaving_window
