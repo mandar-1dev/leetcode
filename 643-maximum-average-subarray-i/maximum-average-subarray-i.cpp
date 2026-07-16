@@ -17,3 +17,10 @@ public:
         return (double)mx / k;
     }
 };
+
+
+//New Window Sum = Previous Window Sum + New Element - Old Element
+
+// [1,12,-5,-6]      sum = 2
+//[12,-5,-6,50]     sum = 2 + 50 - 1 = 51
+//[-5,-6,50,3]      sum = 51 + 3 - 12 = 42
