@@ -17,3 +17,5 @@ public:
         return nums.size() - left;
     }
 };
+
+//first the right iterates and shrinks the k value the the left and k grows together till 0 ;
