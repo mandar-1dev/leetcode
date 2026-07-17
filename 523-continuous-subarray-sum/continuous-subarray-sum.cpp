@@ -1,21 +1,41 @@
 class Solution {
 public:
     bool checkSubarraySum(vector<int>& nums, int k) {
-        unordered_map<int, int> firstIndex;
-        firstIndex[0] = -1;
+        int n = nums.size();
 
-        int prefix = 0;
+        if (n < 2)
+            return false;
 
-        for (int i = 0; i < nums.size(); i++) {
-            prefix += nums[i];
-            int rem = prefix % k;
+        // Check for two consecutive multiples of k
+        for (int i = 1; i < n; i++) {
+            if (nums[i] % k == 0 && nums[i - 1] % k == 0)
+                return true;
+        }
 
-            if (firstIndex.count(rem)) {
-                if (i - firstIndex[rem] > 1)
-                    return true;
-            } else {
-                firstIndex[rem] = i;
-            }
+        vector<int> prefixRemainders;
+
+        for (int num : nums) {
+            if (num % k == 0)
+                continue;
+
+            int rem = num % k;
+
+            if (prefixRemainders.empty())
+                prefixRemainders.push_back(rem);
+            else
+                prefixRemainders.push_back(
+                    (prefixRemainders.back() + rem) % k
+                );
+
+            if (prefixRemainders.back() == 0)
+                return true;
+        }
+
+        sort(prefixRemainders.begin(), prefixRemainders.end());
+
+        for (int i = 1; i < prefixRemainders.size(); i++) {
+            if (prefixRemainders[i] == prefixRemainders[i - 1])
+                return true;
         }
 
         return false;
