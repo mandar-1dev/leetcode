@@ -2,7 +2,8 @@ class Solution {
 public:
     string longestPalindrome(string s) {
         int start = 0, maxLength = 1;
-
+  
+  
         for (int i = 0; i < s.size(); i++) {
 
             
