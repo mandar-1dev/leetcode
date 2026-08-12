@@ -3,30 +3,27 @@
  * struct ListNode {
  *     int val;
  *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
 class Solution {
 public:
-    bool hasCycle(ListNode *head) {
+    bool hasCycle(ListNode* head) {
+        ListNode* slow = head;
+        ListNode* fast = head;
 
-        
-
-        ListNode *slow = head;
-         ListNode *fast = head;
-         
-        if(slow == NULL || slow->next == NULL ) return false;
-
-        while(fast != NULL && fast->next != NULL){
-          
+        while (fast != nullptr && fast->next != nullptr) {
             slow = slow->next;
-            fast = fast->next;
-            fast = fast->next;
-            if(slow == fast) return true; 
-        }      
-        return false;
+            fast = fast->next->next;
 
-        
-         
+            if (slow == fast) {
+                return true;
+            }
+        }
+
+        return false;
     }
 };
