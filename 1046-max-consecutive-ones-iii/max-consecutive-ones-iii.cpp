@@ -1,21 +1,31 @@
 class Solution {
 public:
     int longestOnes(vector<int>& nums, int k) {
-        int left = 0;
+        int zeroCount = 0;
+        int left = 0; int right = 0;
+        int result = 0;
 
-        for (int right = 0; right < nums.size(); right++) {
+        while (right < nums.size())
+        {
             if (nums[right] == 0)
-                k--;
+            {
+                zeroCount++;
+            }
 
-            if (k < 0) {
+            while (zeroCount > k)
+            {
                 if (nums[left] == 0)
-                    k++;
+                {
+                    zeroCount--;
+                }
                 left++;
             }
+
+            result = max(result, right - left + 1);
+
+            right++;
         }
 
-        return nums.size() - left;
+        return result;
     }
 };
-
-//first the right iterates and shrinks the k value the the left and k grows together till 0 ;
