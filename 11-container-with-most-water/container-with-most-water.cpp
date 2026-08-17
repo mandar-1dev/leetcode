@@ -1,24 +1,25 @@
-//Container with most water
 class Solution {
 public:
     int maxArea(vector<int>& height) {
-        int left = 0;
-        int right = height.size() - 1;
-        int ans = 0;
+        int n=height.size();
+        int left=0;
+        int right=n-1;
+        int ans=0;
+        while(left<right){
+            int h=(height[left]<height[right])?height[left]:height[right];
+            int area=h*(right-left);
 
-        while (left < right) {
-            int h = (height[left] < height[right]) ? height[left] : height[right];
-            int area = h * (right - left);
-
-            if (area > ans)
-                ans = area;
-
-            if (height[left] < height[right])
+            if(area>ans){
+                ans=area;
+            }
+            else if(height[left]<height[right]){
                 left++;
-            else
+            }
+            else{
                 right--;
-        }
+            }
 
+        }
         return ans;
     }
 };
