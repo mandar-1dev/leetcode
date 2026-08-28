@@ -13,10 +13,8 @@ public:
             else {
                 if (st.empty() || st.top() != ch)
                     return false;
-                else{
-                    st.pop();
-                }
-                
+
+                st.pop();
             }
         }
 
