@@ -1,40 +1,36 @@
+const static auto fast_io = [](){ cin.tie(nullptr); ios::sync_with_stdio(false); return 0; }();
+
 class Solution {
 public:
-    void dfs(vector<vector<char>>& grid, int r, int c) {
-        int rows = grid.size();
-        int cols = grid[0].size();
 
-        // Out of bounds or already visited water
-        if (r < 0 || r >= rows || c < 0 || c >= cols || grid[r][c] == '0')
-            return;
-
-        // Mark as visited
-        grid[r][c] = '0';
-
-        // Explore 4 directions
-        dfs(grid, r + 1, c);
-        dfs(grid, r - 1, c);
-        dfs(grid, r, c + 1);
-        dfs(grid, r, c - 1);
+    void consume_island(vector<vector<char>>&grid,int i, int j,int n ,int m)
+    {
+        if(i<0 || j<0 || i==n || j==m || grid[i][j]!='1')return;
+        
+        grid[i][j]='0';
+        consume_island(grid,i-1,j,n,m);
+        consume_island(grid,i+1,j,n,m);
+        consume_island(grid,i,j+1,n,m);
+        consume_island(grid,i,j-1,n,m);
     }
 
-    int numIslands(vector<vector<char>>& grid) {
-        int rows = grid.size();
-        int cols = grid[0].size();
-        int islands = 0;
+    int numIslands(vector<vector<char>>& grid) 
+    {
+        int n = grid.size();
+        int m = grid[0].size();
+        int islands=0;
 
-        for (int r = 0; r < rows; r++) {
-            for (int c = 0; c < cols; c++) {
-
-                if (grid[r][c] == '1') {
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(grid[i][j] == '1')
+                {
                     islands++;
-
-                    // Visit the entire island
-                    dfs(grid, r, c);
+                    consume_island(grid,i,j,n,m);
                 }
             }
         }
-
         return islands;
     }
 };
