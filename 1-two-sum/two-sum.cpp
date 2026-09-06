@@ -6,10 +6,12 @@ public:
         for (int i = 0; i < nums.size(); i++) {
             int complement = target - nums[i];
 
+            // Check if complement already exists
             if (mp.find(complement) != mp.end()) {
                 return {mp[complement], i};
             }
 
+            // Store current number with its index
             mp[nums[i]] = i;
         }
 
