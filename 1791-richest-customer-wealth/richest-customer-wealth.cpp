@@ -1,16 +1,14 @@
 class Solution {
 public:
-int maximumWealth(vector<vector<int>>& accounts) {
-int maxWealth = 0;
-int rows = accounts.size();
-int cols = accounts[0].size();
-    for(int i = 0 ; i < rows; i++) {
-        int wealth = 0;
-        for(int j = 0 ; j < cols; j++) {
-            wealth += accounts[i][j];
+    int maximumWealth(vector<vector<int>>& accounts) {
+        int wealth=0;
+        for(int i=0;i<accounts.size();i++){
+            int ans=0;
+            for(int j=0;j<accounts[0].size();j++){
+                ans+=accounts[i][j];
+            }
+            wealth=max(wealth,ans);
         }
-        maxWealth = max(maxWealth, wealth);
+        return wealth;
     }
-    return maxWealth;
-}
 };
