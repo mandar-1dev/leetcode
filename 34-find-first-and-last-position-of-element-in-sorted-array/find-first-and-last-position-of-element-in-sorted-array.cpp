@@ -1,12 +1,46 @@
 class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) {
-        int first = lower_bound(nums.begin(), nums.end(), target) - nums.begin();
 
-        if (first == nums.size() || nums[first] != target)
-            return {-1, -1};
+        int first = -1;
+        int last = -1;
 
-        int last = upper_bound(nums.begin(), nums.end(), target) - nums.begin() - 1;
+        // Find first occurrence
+        int left = 0, right = nums.size() - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (nums[mid] == target) {
+                first = mid;
+                right = mid - 1;   // search further left
+            }
+            else if (nums[mid] < target) {
+                left = mid + 1;
+            }
+            else {
+                right = mid - 1;
+            }
+        }
+
+        // Find last occurrence
+        left = 0;
+        right = nums.size() - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (nums[mid] == target) {
+                last = mid;
+                left = mid + 1;    // search further right
+            }
+            else if (nums[mid] < target) {
+                left = mid + 1;
+            }
+            else {
+                right = mid - 1;
+            }
+        }
 
         return {first, last};
     }
