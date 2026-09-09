@@ -4,7 +4,7 @@ public:
         int maxSum=nums[0],currSum=0;
         for(int val:nums){
             currSum+=val;
-            maxSum=max(maxSum,currSum);
+            maxSum=max(currSum,maxSum);
             if(currSum<0){
                 currSum=0;
             }
