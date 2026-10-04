@@ -5,7 +5,7 @@ public:
             return 0;
         }
         
-        // Use standard library constants
+        
         const long long MAX_INT = INT_MAX;
         const long long MIN_INT = INT_MIN;
         
