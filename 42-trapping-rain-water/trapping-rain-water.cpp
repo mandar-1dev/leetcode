@@ -4,7 +4,7 @@ public:
         int left=0,right=height.size()-1;
         int leftMax=0,rightMax=0;
         int water=0;
-        while(left<=right){
+        while(left<right){
             if(height[left]<height[right]){
                 if(height[left]>=leftMax){
                     leftMax=height[left];
@@ -23,8 +23,6 @@ public:
                 }
                 right--;
             }
-
-
         }
         return water;
     }
