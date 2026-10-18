@@ -13,9 +13,10 @@ public:
                     water+=leftMax-height[left];
                 }
                 left++;
+                
             }
             else{
-                if(height[right]>=rightMax){
+                if(height[right]>rightMax){
                     rightMax=height[right];
                 }
                 else{
