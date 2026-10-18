@@ -5,9 +5,10 @@ public:
         for(int i=0;i<nums.size();i++){
             int req=target-nums[i];
             if(mp.find(req)!=mp.end()){
-                return{mp[req],i};
+                return {mp[req],i};
             }
             mp[nums[i]]=i;
+            
         }
         return {};
     }
