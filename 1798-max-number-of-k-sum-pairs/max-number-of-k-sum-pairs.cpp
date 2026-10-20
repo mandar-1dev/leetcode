@@ -2,25 +2,17 @@
 class Solution {
 public:
     int maxOperations(vector<int>& nums, int k) {
-        sort(nums.begin(), nums.end());
-
-        int left = 0;
-        int right = nums.size() - 1;
+        unordered_map<int, int> freq;
         int count = 0;
 
-        while (left < right) {
-            int sum = nums[left] + nums[right];
+        for (int x : nums) {
+            int complement = k - x;
 
-            if (sum == k) {
+            if (freq[complement] > 0) {
                 count++;
-                left++;
-                right--;
-            }
-            else if (sum < k) {
-                left++;
-            }
-            else {
-                right--;
+                freq[complement]--;
+            } else if (x < k) {
+                freq[x]++;
             }
         }
 
