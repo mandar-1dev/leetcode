@@ -4,7 +4,7 @@ public:
         int left=0,right=height.size()-1;
         int ans=0;
         while(left<right){
-            int n=(height[left]<height[right])?height[left]:height[right];
+            int n=(height[left]>height[right])?height[right]:height[left];
             int area=n*(right-left);
             if(area>ans){
                 ans=area;
